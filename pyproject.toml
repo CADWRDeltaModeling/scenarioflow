@@ -1,0 +1,87 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scenarioflow"
+description = "Assemble model input scenarios from historical, real-time, forecast and planning components"
+dynamic = ["version"]
+authors = [
+    {name = "Eli Ateljevich", email = "Eli.Ateljevich@water.ca.gov"},
+]
+readme = "README.rst"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10,<3.14"
+keywords = ["scenarioflow", "scenario", "time series", "boundary conditions"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "vtools3>=3.10",
+    "dms_datastore",
+    "pandas>=2",
+    "numpy>2",
+    "omegaconf>=2.3",
+    "pyyaml",
+    "click",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+# These are the tools needed to build documentation
+doc = [
+    "sphinx>=7.0,<9",
+    "sphinx-rtd-theme",
+    "sphinx-click",
+    "sphinx-design",
+    "sphinxcontrib-mermaid",
+    "myst-parser",
+    "numpydoc",
+    "docutils",
+]
+# These are the tools needed to perform testing.
+test = [
+    "pytest>=7",
+    "pytest-cov",
+]
+# If using pip, these would be used for the build
+build = [
+    "build",
+    "pip",
+    "setuptools>=68",
+    "wheel",
+    "setuptools-scm",
+]
+
+[project.urls]
+Homepage = "https://github.com/CADWRDeltaModeling/scenarioflow"
+Documentation = "https://cadwrdeltamodeling.github.io/scenarioflow"
+
+[project.scripts]
+sflow = "scenarioflow.__main__:cli"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["scenarioflow*"]
+
+[tool.setuptools_scm]
+version_file = "src/scenarioflow/_version.py"
+version_scheme = "post-release"
+local_scheme = "dirty-tag"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [".*", "*.egg*", "build", "dist", "conda.recipe", "design"]
+addopts = "--junitxml=junit.xml --tb native --strict-markers --durations=20"
+markers = [
+    "integration: tests that require network access, the dms_datastore repository, or credentials",
+]

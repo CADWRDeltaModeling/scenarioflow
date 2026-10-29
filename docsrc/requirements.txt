@@ -1,0 +1,8 @@
+sphinx>=7.0,<9
+sphinx_rtd_theme
+sphinx-click
+sphinx-design
+sphinxcontrib-mermaid
+numpydoc
+docutils
+ghp-import

@@ -1,0 +1,46 @@
+name: "Sphinx: Render docs"
+
+on:
+  push:
+    branches: ["main", "master"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up conda environment
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: scenarioflow_doc
+          environment-file: environment.yml
+          conda-remove-defaults: true
+      - name: Add documentation overlay
+        run: |
+          conda env update -n scenarioflow_doc -f environment-doc.yml
+          python -m pip install --no-deps -e .
+      - name: Build HTML
+        run: |
+          sphinx-build -E -a -b html docsrc docs/html
+      - name: Run ghp-import
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config http.postBuffer 157286400
+          ghp-import -n -p -f ./docs/html

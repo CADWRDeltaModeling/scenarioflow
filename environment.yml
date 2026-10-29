@@ -1,0 +1,24 @@
+name: scenarioflow
+channels:
+  - conda-forge
+  - cadwr-dms
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools-scm>=6.2
+  - vtools3>=3.10
+  - dms-datastore
+  - numpy>=2.0
+  - pandas>=2
+  - omegaconf>=2.3
+  - pyyaml
+  - click
+  - matplotlib
+  - pytest
+  - pytest-cov
+# To develop:
+# git clone https://github.com/CADWRDeltaModeling/scenarioflow
+# conda env create -f environment.yml
+# conda activate scenarioflow
+# pip install --no-deps -e .

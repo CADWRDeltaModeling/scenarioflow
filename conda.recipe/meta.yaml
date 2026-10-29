@@ -1,0 +1,59 @@
+{% set pyproject = load_file_data("../pyproject.toml", from_recipe_dir=True) %}
+
+package:
+  name: scenarioflow
+  # Set by CI from setuptools_scm via conda.recipe/variant.yaml
+  version: {{ PKG_VERSION }}
+
+source:
+  path: ..
+
+build:
+  script: {{ PYTHON }} -m pip install --no-deps --ignore-installed -vv .
+  noarch: python
+  number: 0
+  script_env:
+    - SETUPTOOLS_SCM_PRETEND_VERSION={{ SCM_VERSION }}
+  entry_points:
+    {% for name, reference in pyproject['project']['scripts'].items() %}
+    - {{ name }} = {{ reference }}
+    {% endfor %}
+
+requirements:
+  build:
+    - python {{ pyproject['project']['requires-python'] }}
+    - setuptools
+    - setuptools-scm
+    - wheel
+  host:
+    - python {{ pyproject['project']['requires-python'] }}
+    - pip
+    - setuptools
+    - setuptools-scm
+    - wheel
+  run:
+    - python {{ pyproject['project']['requires-python'] }}
+    # dependencies are defined in pyproject.toml; conda names use '-' not '_'
+    {% for dep in pyproject['project'].get('dependencies', []) %}
+    - {{ dep.lower().replace('_', '-') }}
+    {% endfor %}
+
+test:
+  imports:
+    - scenarioflow
+  source_files:
+    - tests
+    - pyproject.toml
+  requires:
+    - pytest
+    - pytest-cov
+  commands:
+    - sflow --help
+    - (cd tests && pytest -m "not integration") # [win]
+    - (cd tests; pytest -m "not integration") # [unix]
+
+about:
+  home: https://github.com/CADWRDeltaModeling/scenarioflow
+  summary: Assemble model input scenarios from historical, real-time, forecast and planning components
+  license: MIT
+  license_file: LICENSE
