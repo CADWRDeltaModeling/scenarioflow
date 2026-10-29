@@ -4,6 +4,11 @@
 
 The architecture and its direction are described in [design/design.rst](design/design.rst). Read it before structural work.
 
+## Current focus
+
+- **Transforms are being refactored extensively.** Expect changes to transform names, signatures and the transform contract. Treat the current `builtins/transforms.py` interface as provisional, not as a compatibility constraint, unless the user says otherwise.
+- **The GUI is dormant.** Do not modify, extend or refactor `src/scenarioflow/gui/`, the `--gui` option, or GUI-oriented design unless the user explicitly asks. Keep it importable and its existing test passing when other changes touch shared code (e.g. `plot.py`).
+
 ## Package role
 
 The core rule from the design:
@@ -32,7 +37,7 @@ The core rule from the design:
 - Prefer failure to robustification and silent passes.
 - Avoid making inference from surrounding files the only way to use an API. Important inputs should also be supplyable explicitly.
 - Assume the established tool stack exists; do not add elaborate defensive discovery for expected dependencies.
-- Preserve the behavior of scenario assembly unless the change is the point of the task. The package was lifted from a prototype without behavior change; tests in `tests/test_scenario.py` pin it.
+- Preserve the behavior of scenario assembly unless the change is the point of the task. The package was lifted from a prototype without behavior change; tests in `tests/test_scenario.py` pin it. When a transform refactor changes results intentionally, update those tests deliberately and record the change in `CHANGELOG.rst`.
 
 ## Time-series dependencies
 
@@ -82,5 +87,5 @@ See [.github/docs/TESTING_GUIDE.md](.github/docs/TESTING_GUIDE.md).
 | Writing or debugging scenario YAML | `scenario-authoring` skill |
 | Adding readers, transforms, functions or stitchers | `plugin-authoring` skill |
 | Model porters (planned) | `porter-authoring` skill |
-| Assembly Preview and GUI viewers | `assembly-viewer` skill |
+| Assembly Preview and GUI viewers (dormant; only on explicit request) | `assembly-viewer` skill |
 | Sphinx documentation | `documentation` skill |

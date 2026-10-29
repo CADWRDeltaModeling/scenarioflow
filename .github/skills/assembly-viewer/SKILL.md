@@ -1,9 +1,11 @@
 ---
 name: assembly-viewer
-description: "Use when working on scenarioflow visual inspection: the matplotlib Assembly Preview mock (TrackTimeline), sflow plot --gui, static component plots, and the planned Panel/Bokeh GUI with Final/Components modes, assembly track, group views and registered viewers."
+description: "Use only when the user explicitly asks to work on scenarioflow GUI or interactive inspection: the matplotlib Assembly Preview mock (TrackTimeline), sflow plot --gui, and the planned Panel/Bokeh GUI. GUI work is currently dormant."
 ---
 
 # Assembly viewer
+
+> **Dormant.** GUI work is not active. Do not modify `src/scenarioflow/gui/` or start the Panel GUI unless the user explicitly asks. If other work (e.g. in `plot.py`) touches code the timeline uses, keep `tests/test_cli.py::test_track_timeline` passing and go no further.
 
 ## Current implementation
 

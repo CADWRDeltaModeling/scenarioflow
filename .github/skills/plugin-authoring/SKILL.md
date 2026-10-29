@@ -5,6 +5,8 @@ description: "Use when adding or changing a scenarioflow reader, transform, func
 
 # Plugin authoring
 
+> **Transforms are under active, extensive refactoring.** The transform table and call contract below describe the current code, not a target design. Before changing transforms, confirm the intended contract with the user. Don't treat existing transform names or signatures as compatibility constraints unless the user says so. When results change on purpose, update `tests/test_scenario.py` and `CHANGELOG.rst` together.
+
 ## Current mechanism
 
 Built-ins are dictionaries:

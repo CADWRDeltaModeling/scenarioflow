@@ -10,7 +10,7 @@ Deeper material is split out of AGENTS.md:
 - [docs/SOURCE_MAP.md](docs/SOURCE_MAP.md) — key files to read first
 - [docs/TESTING_GUIDE.md](docs/TESTING_GUIDE.md) — test layout and invocation
 - [docs/CLI_GUIDE.md](docs/CLI_GUIDE.md) — CLI conventions shared across the DMS ecosystem
-- `skills/` — `scenario-authoring`, `plugin-authoring`, `porter-authoring`, `assembly-viewer`, `documentation`
+- `skills/` — `scenario-authoring`, `plugin-authoring` (transforms under active refactoring), `porter-authoring`, `assembly-viewer` (dormant), `documentation`
 
 # Build and Test
 
