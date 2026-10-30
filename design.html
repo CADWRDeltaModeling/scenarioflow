@@ -1,0 +1,1107 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design &mdash; scenarioflow 0.0.post2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=039154f1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = "pre.mermaid {\n    /* Same as .mermaid-container > pre */\n    display: block;\n    width: 100%;\n}\n\npre.mermaid > svg {\n    /* Same as .mermaid-container > pre > svg */\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}";
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = ".mermaid-container {\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    width: 100%;\n}\n\n.mermaid-container > pre {\n    display: block;\n    width: 100%;\n}\n\n.mermaid-container > pre > svg {\n    height: 500px;\n    width: 100%;\n    max-width: 100% !important;\n}\n\n.mermaid-fullscreen-btn {\n    position: absolute;\n    width: 28px;\n    height: 28px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.3);\n    border-radius: 4px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    transition: all 0.2s;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n    font-size: 14px;\n    line-height: 1;\n    padding: 0;\n    color: #333;\n}\n\n.mermaid-fullscreen-btn:hover {\n    opacity: 100% !important;\n    background: rgba(255, 255, 255, 1);\n    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-btn.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.3);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-btn.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal {\n    display: none;\n    position: fixed !important;\n    top: 0 !important;\n    left: 0 !important;\n    width: 95vw;\n    height: 100vh;\n    background: rgba(255, 255, 255, 0.98);\n    z-index: 9999;\n    padding: 20px;\n    overflow: auto;\n}\n\n.mermaid-fullscreen-modal.dark-theme {\n    background: rgba(0, 0, 0, 0.98);\n}\n\n.mermaid-fullscreen-modal.active {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen {\n    position: relative;\n    width: 95vw;\n    height: 90vh;\n    max-width: 95vw;\n    max-height: 90vh;\n    background: white;\n    border-radius: 8px;\n    padding: 20px;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);\n    overflow: auto;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen.dark-theme {\n    background: #1a1a1a;\n    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);\n}\n\n.mermaid-container-fullscreen pre.mermaid {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.mermaid-container-fullscreen .mermaid svg {\n    height: 100% !important;\n    width: 100% !important;\n    cursor: grab;\n}\n\n.mermaid-fullscreen-close {\n    position: fixed !important;\n    top: 20px !important;\n    right: 20px !important;\n    width: 40px;\n    height: 40px;\n    background: rgba(255, 255, 255, 0.95);\n    border: 1px solid rgba(0, 0, 0, 0.2);\n    border-radius: 50%;\n    cursor: pointer;\n    z-index: 10000;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);\n    transition: all 0.2s;\n    font-size: 24px;\n    line-height: 1;\n    color: #333;\n}\n\n.mermaid-fullscreen-close:hover {\n    background: white;\n    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);\n    transform: scale(1.1);\n}\n\n.mermaid-fullscreen-close.dark-theme {\n    background: rgba(50, 50, 50, 0.95);\n    border: 1px solid rgba(255, 255, 255, 0.2);\n    color: #e0e0e0;\n}\n\n.mermaid-fullscreen-close.dark-theme:hover {\n    background: rgba(60, 60, 60, 1);\n    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);\n}\n\n.mermaid-fullscreen-modal .mermaid-fullscreen-btn {\n    display: none !important;\n}";
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+let _lazyObserver = null;
+let _renderQueue = Promise.resolve();
+let closeModal = () => {};
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Apply d3 zoom to each SVG. Idempotent: an SVG already wrapped is skipped,
+// so this is safe to call both for the initial batch and for diagrams that
+// render lazily once they become visible.
+const addZoomToSvgs = (svgs) => {
+    svgs.each(function() {
+        if (this.getAttribute('data-zoom-applied') === 'true') return;
+        var svg = d3.select(this);
+        svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+        var inner = svg.select("g");
+        var zoom = d3.zoom().on("zoom", function(event) {
+            inner.attr("transform", event.transform);
+        });
+        svg.call(zoom);
+        this.setAttribute('data-zoom-applied', 'true');
+    });
+};
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        // Disconnect any previous lazy rendering observer
+        if (_lazyObserver) {
+            _lazyObserver.disconnect();
+            _lazyObserver = null;
+        }
+
+        all_mermaids.forEach((el) => {
+            el.removeAttribute('data-mermaid-deferred');
+            el.removeAttribute('data-mermaid-render-failed');
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+
+        // Separate visible and hidden elements. Mermaid's layout engine measures
+        // text dimensions via the DOM, which fails for elements hidden by a parent
+        // (e.g., Reveal.js non-active slides, sphinx-design unopened tabs),
+        // producing broken SVGs. Render visible elements now, defer hidden ones.
+        const visible = [];
+        const hidden = [];
+        all_mermaids.forEach((el) => {
+            // offsetParent is null for display:none ancestors.
+            // getClientRects().length > 0 catches position:fixed elements
+            // (which also have null offsetParent but are still visible).
+            if (el.offsetParent !== null || el.getClientRects().length > 0) {
+                visible.push(el);
+            } else {
+                hidden.push(el);
+                el.setAttribute('data-mermaid-deferred', 'true');
+            }
+        });
+
+        if (visible.length > 0) {
+            try {
+                await mermaid.run({ nodes: visible });
+            } catch (e) {
+                console.error("Mermaid rendering failed:", e);
+            }
+        }
+
+        // Lazily render hidden elements when they become visible.
+        // Uses a promise chain (_renderQueue) to serialize rendering,
+        // since IntersectionObserver may report multiple entries at once
+        // and mermaid.run() is not safe to call concurrently.
+        if (hidden.length > 0) {
+            if (typeof IntersectionObserver === 'undefined') {
+                console.warn("IntersectionObserver not available; hidden mermaid diagrams will not render.");
+            } else {
+                _renderQueue = Promise.resolve();
+                _lazyObserver = new IntersectionObserver((entries) => {
+                    for (const entry of entries) {
+                        if (entry.isIntersecting && entry.target.getAttribute("data-processed") !== "true") {
+                            _lazyObserver.unobserve(entry.target);
+                            const el = entry.target;
+                            _renderQueue = _renderQueue.then(async () => {
+                                try {
+                                    await mermaid.run({ nodes: [el] });
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    // Apply zoom to the now-rendered diagram, matching
+                                    // the decoration visible diagrams receive.
+                                    if (false) {
+                                        addZoomToSvgs(d3.selectAll("").select(function() {
+                                            return this.querySelector("svg");
+                                        }));
+                                    }
+                                } catch (e) {
+                                    console.error("Mermaid deferred rendering failed:", e);
+                                    el.removeAttribute('data-mermaid-deferred');
+                                    el.setAttribute('data-mermaid-render-failed', 'true');
+                                }
+                            });
+                        }
+                    }
+                });
+                hidden.forEach((el) => _lazyObserver.observe(el));
+            }
+        }
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    // Exclude deferred (hidden) and render-failed elements from completion checks
+    const mermaids_active = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])");
+    const mermaids_processed = document.querySelectorAll(".mermaid:not([data-mermaid-deferred]):not([data-mermaid-render-failed])[data-processed='true']");
+
+    if (false) {
+        const mermaids_to_add_zoom = 0 === -1 ? mermaids_active.length : 0;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("").select(function() {
+                return this.querySelector("svg");
+            });
+            // Wait until every active (visible) diagram has rendered. Deferred
+            // diagrams are excluded, so a fixed d3_node_count that counts a
+            // hidden diagram no longer loops forever waiting for its SVG.
+            if(mermaids_active.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            }
+            addZoomToSvgs(svgs);
+        }
+    } else if(mermaids_active.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if (!true) return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = "\u26f6";
+        fullscreenBtn.style.opacity = "50%";
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scrollX, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.display = 'block';
+
+                if (false) {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+
+
+const load = async () => {
+    initStyles();
+
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...{"startOnLoad": false},
+                ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...{"startOnLoad": false},
+    ...{ darkMode: darkTheme, theme: darkTheme ? "dark" : "default" },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API reference" href="api.html" />
+    <link rel="prev" title="Command-line tools" href="commands.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            scenarioflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario_yaml.html">Scenario YAML reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Command-line tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#design-in-one-picture">Design in one picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conceptual-pipeline">Conceptual pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#read-source-material">1. Read source material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transform-components">2. Transform components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#splice-components-into-one-conceptual-input">3. Splice components into one conceptual input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normalize-the-conceptual-input">4. Normalize the conceptual input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#port-the-scenario-to-a-model">5. Port the scenario to a model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#model-independent-does-not-mean-lowest-common-denominator">Model-independent does not mean lowest common denominator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extension-model">Extension model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-sketch">Configuration sketch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-use-cases">Example use cases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-case-1-extend-a-hindcast-lightly-to-tomorrow">Use case 1: extend a hindcast lightly to tomorrow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-case-2-append-a-three-week-operational-forecast">Use case 2: append a three-week operational forecast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configurable-components">Configurable components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#inspection-and-gui-design">Inspection and GUI design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-assembly-view">Time-series assembly view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-views-and-model-grouping">Group views and model grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registered-viewers-for-nonstandard-inputs">Registered viewers for nonstandard inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-information">Spatial information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plugin-metadata-for-configuration-and-display">Plugin metadata for configuration and display</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proposed-internal-architecture">Proposed internal architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validation-and-construction-lineage">Validation and construction lineage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-prototype">Current prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#near-term-implementation-priorities">Near-term implementation priorities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scenarioflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/design.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="design">
+<h1>Design<a class="headerlink" href="#design" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">scenarioflow</span></code> is a framework for assembling the time-dependent inputs
+to numerical models from sources that differ in provenance, certainty,
+duration, and resolution.</p>
+<p>The central idea is that a <strong>scenario is not usually one data set</strong>. A
+model input such as a river flow, gate operation, stage boundary, or
+planning assumption may be assembled from several pieces:</p>
+<ol class="arabic simple">
+<li><p>a historical archive, often representing the highest-quality
+hindcast data;</p></li>
+<li><p>a real-time or provisional head attached to that archive, possibly
+including short extrapolations; and</p></li>
+<li><p>a forecast, climatology, or planning assumption that carries the
+scenario into the future.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">scenarioflow</span></code> makes that assembly explicit. Each conceptual input is
+built independently, normalized (e.g., convert units, rename columns,
+and resample from hourly to the scenarioâ€™s 15-minute interval) to a
+common representation, spliced together in time with context-appropriate
+transitions and only then handed to a <strong>model porter</strong> that knows how to
+package the scenario for a particular model.</p>
+<section id="design-in-one-picture">
+<h2>Design in one picture<a class="headerlink" href="#design-in-one-picture" title="Link to this heading"></a></h2>
+<pre  class="mermaid">
+        flowchart LR
+    subgraph Sources[&quot;Source material&quot;]
+        H[&quot;Historical archive&quot;]
+        R[&quot;Real-time / provisional&quot;]
+        F[&quot;Forecast / planning assumption&quot;]
+    end
+
+    subgraph Build[&quot;Build conceptual inputs&quot;]
+        RD[&quot;Readers&quot;]
+        TR[&quot;Transforms&lt;br/&gt;units, naming, interpolation,&lt;br/&gt;sampling, derived quantities&quot;]
+        ST[&quot;Splice / transition / extrapolate&quot;]
+        CI[&quot;Canonical conceptual input&lt;br/&gt;consistent units, structure,&lt;br/&gt;time window and resolution&quot;]
+    end
+
+    subgraph Port[&quot;Model-specific porting&quot;]
+        MP[&quot;Model porter&lt;br/&gt;validate â€¢ group â€¢ complete â€¢ render&quot;]
+        D[&quot;DSM2 inputs&quot;]
+        S[&quot;SCHISM inputs&quot;]
+        O[&quot;Other model&quot;]
+    end
+
+    H --&gt; RD
+    R --&gt; RD
+    F --&gt; RD
+    RD --&gt; TR
+    TR --&gt; ST
+    ST --&gt; CI
+    CI --&gt; MP
+    MP --&gt; D
+    MP --&gt; S
+    MP --&gt; O
+    </pre><p>The important boundary is between <strong>scenario construction</strong> and <strong>model
+rendering</strong>. Upstream of that boundary, the vocabulary should describe
+the physical or operational inputs we mean. Downstream, the porter deals
+with the peculiarities of a modelâ€™s input format.</p>
+</section>
+<section id="conceptual-pipeline">
+<h2>Conceptual pipeline<a class="headerlink" href="#conceptual-pipeline" title="Link to this heading"></a></h2>
+<section id="read-source-material">
+<h3>1. Read source material<a class="headerlink" href="#read-source-material" title="Link to this heading"></a></h3>
+<p>A <strong>reader</strong> turns an external source into a usable time series or
+related object. Sources may include repositories, CSV files, databases,
+APIs, scripts, climatologies, or forecast products.</p>
+<p>Readers should be small adapters. Their job is to understand the source,
+not the target model.</p>
+<p>Examples already present in the prototype include repository time-series
+readers, ordinary CSV input, and climatology input.</p>
+</section>
+<section id="transform-components">
+<h3>2. Transform components<a class="headerlink" href="#transform-components" title="Link to this heading"></a></h3>
+<p>A source often needs to be transformed before it can participate in a
+scenario. Typical transformations include:</p>
+<ul class="simple">
+<li><p>unit conversion;</p></li>
+<li><p>column or variable naming;</p></li>
+<li><p>temporal interpolation or resampling;</p></li>
+<li><p>application of climatology;</p></li>
+<li><p>clipping to a useful time window;</p></li>
+<li><p>conversion to a common internal representation; and</p></li>
+<li><p>derived quantities or other user-defined transformations.</p></li>
+</ul>
+<p>A component may begin at a different resolution from the final model
+input. The framework should therefore distinguish the <strong>native
+resolution of a source</strong> from the <strong>target resolution of the conceptual
+input</strong>.</p>
+</section>
+<section id="splice-components-into-one-conceptual-input">
+<h3>3. Splice components into one conceptual input<a class="headerlink" href="#splice-components-into-one-conceptual-input" title="Link to this heading"></a></h3>
+<p>A conceptual input can contain several ordered components. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>historical archive
+    -&gt; transition
+real-time / forecast series
+    -&gt; extrapolation or climatology
+planning horizon
+</pre></div>
+</div>
+<p>The splice is part of the scenario definition, not an accidental side
+effect of file precedence. Effective dates and transition rules should
+be visible in configuration so that a scenario can be inspected and
+reproduced.</p>
+<p>The current prototype follows this pattern: data components are loaded
+and transformed, function components can create transitions or
+extrapolations, and the resulting segments are stitched into a final
+series.</p>
+</section>
+<section id="normalize-the-conceptual-input">
+<h3>4. Normalize the conceptual input<a class="headerlink" href="#normalize-the-conceptual-input" title="Link to this heading"></a></h3>
+<p>Before model-specific rendering, each conceptual input should satisfy a
+canonical contract. The exact contract still needs to be formalized, but
+it should include at least:</p>
+<ul class="simple">
+<li><p>a stable conceptual name;</p></li>
+<li><p>a defined time window;</p></li>
+<li><p>a target temporal resolution;</p></li>
+<li><p>explicit units;</p></li>
+<li><p>a known data shape and column convention;</p></li>
+<li><p>provenance for the contributing components;</p></li>
+<li><p>explicit missing-data semantics; and</p></li>
+<li><p>enough metadata for the porter to determine model placement.</p></li>
+</ul>
+<p>This is the layer that allows scenario construction to remain largely
+independent of DSM2, SCHISM, or another model.</p>
+</section>
+<section id="port-the-scenario-to-a-model">
+<h3>5. Port the scenario to a model<a class="headerlink" href="#port-the-scenario-to-a-model" title="Link to this heading"></a></h3>
+<p>A <strong>model porter</strong> consumes the completed conceptual inputs and renders
+the files or objects required by a target model.</p>
+<p>The porter owns model-specific knowledge. This includes more than file
+formatting. It should also know the modelâ€™s required <strong>groups</strong>,
+dependencies, and completeness rules.</p>
+<p>For example, a SCHISM porter may need to collect all flux boundaries
+into the structures expected by SCHISM and separately collect
+hydraulic-structure parameters. A DSM2 porter may require a different
+grouping and may not consume exactly the same set of conceptual inputs.</p>
+<p>The porter should therefore be responsible for:</p>
+<ul class="simple">
+<li><p>mapping conceptual inputs to model-specific names and locations;</p></li>
+<li><p>grouping related inputs where the model requires grouped output;</p></li>
+<li><p>checking that required members of each group are present;</p></li>
+<li><p>rejecting incompatible units, shapes, or resolutions that escaped
+normalization;</p></li>
+<li><p>applying model-specific defaults only where those defaults are
+intentional and documented; and</p></li>
+<li><p>writing the final model input representation.</p></li>
+</ul>
+<p>A porter is consequently both a <strong>renderer</strong> and a <strong>model-aware
+validator</strong>.</p>
+</section>
+</section>
+<section id="model-independent-does-not-mean-lowest-common-denominator">
+<h2>Model-independent does not mean lowest common denominator<a class="headerlink" href="#model-independent-does-not-mean-lowest-common-denominator" title="Link to this heading"></a></h2>
+<p>The goal is not to force DSM2 and SCHISM to have identical inputs. They
+describe systems differently and have different configuration
+requirements.</p>
+<p>Instead, <code class="docutils literal notranslate"><span class="pre">scenarioflow</span></code> should make the shared conceptual layer as broad
+as is useful while allowing model-specific branches at the porting
+stage.</p>
+<p>One possible mechanism is an explicit <strong>pass-through</strong> conceptual input:
+data that scenarioflow carries, validates minimally, and makes available
+to a porter even when it has no universal interpretation. This can
+accommodate model-specific information without contaminating the general
+scenario-building machinery.</p>
+<p>Pass-through data should remain explicit. It should not become a hidden
+escape hatch that bypasses validation for ordinary time series.</p>
+</section>
+<section id="extension-model">
+<h2>Extension model<a class="headerlink" href="#extension-model" title="Link to this heading"></a></h2>
+<p>The framework should be extensible without requiring every
+domain-specific reader, transformation, or porter to live in the
+<code class="docutils literal notranslate"><span class="pre">scenarioflow</span></code> package.</p>
+<p>User-installed packages should be able to contribute:</p>
+<ul class="simple">
+<li><p><strong>readers</strong> â€” adapters for repositories, databases, forecast
+products, APIs, and local formats;</p></li>
+<li><p><strong>transforms</strong> â€” domain-specific normalization, interpolation,
+conversions, and derived quantities;</p></li>
+<li><p><strong>functions/stitchers</strong> â€” transitions, extrapolators, and other
+ways of constructing components; and</p></li>
+<li><p><strong>model porters</strong> â€” validation, grouping, mapping, and rendering
+for a particular model; and</p></li>
+<li><p><strong>viewers</strong> â€” optional domain-specific inspection views for
+conceptual inputs or groups.</p></li>
+</ul>
+<p>A small core registry can provide built-ins, while plugins register
+additional named implementations. Configuration then refers to those
+implementations by stable names rather than importing arbitrary Python
+in YAML.</p>
+<p>Conceptually:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>scenarioflow core
+    readers registry
+    transforms registry
+    functions/stitchers registry
+    porters registry
+    viewers registry
+          ^
+          |
+    installed user packages
+</pre></div>
+</div>
+<p>For a mature implementation, Python entry points are a natural discovery
+mechanism for installed plugins. Direct registration through a Python
+API is also useful for development and testing.</p>
+</section>
+<section id="configuration-sketch">
+<h2>Configuration sketch<a class="headerlink" href="#configuration-sketch" title="Link to this heading"></a></h2>
+<p>The existing YAML already expresses the component-oriented part of the
+design. A future extension could make the target model and porter
+explicit:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">define</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">session_start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-04-01</span>
+<span class="w">  </span><span class="nt">session_end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-12-31</span>
+<span class="w">  </span><span class="nt">flux_dt</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15min</span>
+
+<span class="nt">scenario</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">  </span><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dt_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${flux_dt}</span>
+
+<span class="w">  </span><span class="nt">series</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sac</span>
+<span class="w">      </span><span class="nt">components</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hist</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">          </span><span class="nt">effective</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${session_start}</span>
+<span class="w">          </span><span class="nt">load</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read_ts_repo</span>
+<span class="w">            </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
+<span class="w">          </span><span class="nt">transformations</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_conversion</span>
+<span class="w">              </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">from_unit</span><span class="p">:</span><span class="w"> </span><span class="s">"ft^3/s"</span><span class="p p-Indicator">,</span><span class="nt"> to_unit</span><span class="p">:</span><span class="w"> </span><span class="s">"m^3/s"</span><span class="p p-Indicator">}</span>
+
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">forecast</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">          </span><span class="nt">effective</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${forecast_start}</span>
+<span class="w">          </span><span class="nt">load</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read_forecast_product</span>
+<span class="w">            </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">...</span><span class="p p-Indicator">}</span>
+
+<span class="w">      </span><span class="nt">stitcher</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ts_splice</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+
+<span class="nt">targets</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">porter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schism</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./schism_inputs</span>
+<span class="w">    </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schism_mapping.yml</span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">porter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dsm2</span>
+<span class="w">    </span><span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./dsm2_inputs</span>
+<span class="w">    </span><span class="nt">mapping</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dsm2_mapping.yml</span>
+</pre></div>
+</div>
+<p>The exact schema is not settled by this example. In particular,
+model-specific mapping may belong in a separate file so that a scenario
+can be reused with several models without embedding their details in the
+conceptual scenario definition.</p>
+</section>
+<section id="example-use-cases">
+<h2>Example use cases<a class="headerlink" href="#example-use-cases" title="Link to this heading"></a></h2>
+<p>The component-and-assembly model is easiest to understand through a few
+common operational cases.</p>
+<section id="use-case-1-extend-a-hindcast-lightly-to-tomorrow">
+<h3>Use case 1: extend a hindcast lightly to tomorrow<a class="headerlink" href="#use-case-1-extend-a-hindcast-lightly-to-tomorrow" title="Link to this heading"></a></h3>
+<p>A frequently needed scenario is not really a forecast. The historical or
+provisional record is nearly current, but the model input needs to reach
+tomorrow. A short extension can be constructed explicitly rather than
+modifying the archive itself.</p>
+<p>For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>historical / provisional archive
+        |
+        +-- ffill for a short gap
+        |
+        +-- climatology, if a longer or seasonally varying extension is preferred
+        |
+      tomorrow
+</pre></div>
+</div>
+<p>A particular series might use only <code class="docutils literal notranslate"><span class="pre">ffill</span></code>, only climatology, or both in
+sequence:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>archive through Aug 10 12:00
+    -&gt; ffill through Aug 11 00:00
+    -&gt; climatology through Aug 13
+</pre></div>
+</div>
+<p>These operations have different meanings. <code class="docutils literal notranslate"><span class="pre">ffill</span></code> says, in effect, â€œhold
+the most recent value for this short operational gap.â€ Applying
+climatology substitutes an expected seasonal pattern. Scenarioflow
+should keep those choices explicit in the construction recipe.</p>
+<p>The <strong>Assembly Preview</strong> should make the construction visible: show the
+source component, the extension, the final assembled series, and markers
+or shading at the effective dates and transition regions. This is
+construction/lineage information, not an assertion of uniquely defined
+pointwise provenance.</p>
+</section>
+<section id="use-case-2-append-a-three-week-operational-forecast">
+<h3>Use case 2: append a three-week operational forecast<a class="headerlink" href="#use-case-2-append-a-three-week-operational-forecast" title="Link to this heading"></a></h3>
+<p>A second common case is a hindcast or provisional archive followed by a
+genuine operational forecast:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>historical / provisional archive
+              |
+              | forecast effective time
+              v
+      operational forecast
+              |
+              v
+         +21 days
+</pre></div>
+</div>
+<p>Here the forecast is a data component with its own reader, not merely an
+extrapolation method. The stitcher determines how the historical and
+forecast components are assembled.</p>
+<p>Forecast products may overlap the archive. That overlap can support
+several explicit policies:</p>
+<ul class="simple">
+<li><p>switch to the forecast at a specified effective time;</p></li>
+<li><p>blend over a short transition window; or</p></li>
+<li><p>continue to prefer observations/provisional data where available and
+use the forecast beyond their endpoint.</p></li>
+</ul>
+<p>The policy belongs to scenario assembly rather than to either reader.
+Readers retrieve candidate components; the stitcher controls precedence
+and transition.</p>
+</section>
+<section id="configurable-components">
+<h3>Configurable components<a class="headerlink" href="#configurable-components" title="Link to this heading"></a></h3>
+<p>Scenarioflow should support reusable scenario recipes whose details are
+supplied through configuration rather than hard-coded into the component
+implementation.</p>
+<p>There are two useful kinds of configuration.</p>
+<p><strong>Parameters</strong> are known before execution. Examples include station
+names, paths, target resolution, forecast horizon, transition duration,
+units, and scenario dates. The current <code class="docutils literal notranslate"><span class="pre">${...}</span></code> substitution mechanism
+supports values from the scenario <code class="docutils literal notranslate"><span class="pre">define</span></code> block and environment
+variables.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">define</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">forecast_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21</span>
+<span class="w">  </span><span class="nt">transition_hours</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">  </span><span class="nt">dt_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15min</span>
+<span class="w">  </span><span class="nt">station</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Station1</span>
+</pre></div>
+</div>
+<p><strong>Workspace references or expressions</strong> refer to objects or values
+produced while the scenario is being assembled. The current <code class="docutils literal notranslate"><span class="pre">$!{...}</span></code>
+mechanism supports this distinction. For example, an extrapolator can
+refer to an already loaded historical series or derive its starting
+point from the endpoint of that series.</p>
+<p>The GUI does not need to expose the expression syntax for routine cases.
+A Panel editor can present semantic controls such as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Component: short_extension
+
+Method          extrapolate_ts
+Input series    Station1.hist
+Method          ffill
+Start           End of input series
+End             Scenario end
+</pre></div>
+</div>
+<p>and serialize those selections to the corresponding YAML representation.</p>
+<p>Similarly, a forecast component could expose:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Component: ops_forecast
+
+Type            Data
+Reader          operational_forecast
+Station         Station1
+Issue           Latest available
+Horizon         21 days
+Effective       Forecast start
+</pre></div>
+</div>
+<p>For contributed readers and transforms, a useful plugin contract is
+therefore somewhat richer than a callable alone. A plugin can advertise:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name
+callable
+parameter schema
+description
+optional output metadata
+</pre></div>
+</div>
+<p>The parameter schema gives the same component definition three natural
+front ends:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>YAML             CLI             Panel GUI
+  \               |               /
+   +--------------+--------------+
+                  |
+          scenarioflow component
+</pre></div>
+</div>
+<p>YAML remains the durable, reviewable scenario representation. The GUI is
+an editor and inspector for that representation rather than a separate
+configuration system.</p>
+</section>
+</section>
+<section id="inspection-and-gui-design">
+<h2>Inspection and GUI design<a class="headerlink" href="#inspection-and-gui-design" title="Link to this heading"></a></h2>
+<p>A GUI should expose the same scenario definition used by YAML and the
+Python API rather than create a separate configuration system.
+Panel/Bokeh is a natural frontend for this because the application is
+primarily an editor and inspector for Python objects and time series.</p>
+<p>The basic interaction should remain simple:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>navigation        one active viewer             inspector
+    |                    |                          |
+group / input  -&gt; selected conceptual input -&gt; selected object/component
+</pre></div>
+</div>
+<p>The navigation hierarchy is approximately <strong>group -&gt; conceptual input
+-&gt; component</strong>. Groups might include flows, elevation, temperature,
+salinity, structures, and sources/sinks. Selecting a group should
+provide a compact overview and validation status; selecting one
+conceptual input opens its appropriate detailed viewer.</p>
+<section id="time-series-assembly-view">
+<h3>Time-series assembly view<a class="headerlink" href="#time-series-assembly-view" title="Link to this heading"></a></h3>
+<p>Ordinary time-dependent inputs such as flow, temperature, salinity, and
+elevation should share a standard assembly viewer with at least two
+modes:</p>
+<ul class="simple">
+<li><p><strong>Final</strong> â€” the assembled conceptual input, with the assembly
+track and transition boundaries visible; and</p></li>
+<li><p><strong>Components</strong> â€” the contributing component series together with
+the final splice and the same assembly track.</p></li>
+</ul>
+<p>The assembly track is important in both modes because it shows how the
+final series was constructed: historical, provisional, transition,
+forecast, climatology, extrapolation, or other components. Transition
+windows and effective dates should be visible without implying uniquely
+defined pointwise provenance.</p>
+<p>A configuration/inspection mode can expose the selected reader,
+transforms, effective dates, stitcher, target resolution, and validation
+messages.</p>
+</section>
+<section id="group-views-and-model-grouping">
+<h3>Group views and model grouping<a class="headerlink" href="#group-views-and-model-grouping" title="Link to this heading"></a></h3>
+<p>The GUI should not attempt to plot every member of a model group at
+once. A group-level view is primarily for navigation, coverage, and
+completeness checking. For example, a SCHISM flow group might show ten
+named inputs with their time coverage, abbreviated assembly recipe, and
+validation status. Selecting one flow then opens its detailed assembly
+view.</p>
+<p>This distinction also mirrors the porter architecture: conceptual inputs
+are constructed individually, while the model porter knows which
+completed inputs must ultimately be grouped together and can report
+missing or incompatible members.</p>
+</section>
+<section id="registered-viewers-for-nonstandard-inputs">
+<h3>Registered viewers for nonstandard inputs<a class="headerlink" href="#registered-viewers-for-nonstandard-inputs" title="Link to this heading"></a></h3>
+<p>Not every conceptual input is best represented by a single line plot.
+The GUI should therefore allow installed packages to contribute
+<strong>viewers</strong> in addition to readers, transforms, stitchers, and porters.</p>
+<p>Examples include:</p>
+<ul class="simple">
+<li><p>a standard time-series assembly viewer;</p></li>
+<li><p>a mixed-type hydraulic-structure viewer, where integer state,
+continuous height, and bounded operation fraction can share a time
+axis but use appropriate separate tracks; and</p></li>
+<li><p>a source/sink viewer suitable for navigating a large collection of
+inputs.</p></li>
+</ul>
+<p>A viewer should attach to the conceptual input type or group rather than
+to a reader. Readers retrieve data; viewers display assembled objects
+and, when useful, their components.</p>
+<p>Conceptually:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>scenarioflow GUI shell
+        |
+        +-- navigation
+        +-- registered viewer for current selection
+        +-- inspector / configuration
+</pre></div>
+</div>
+<p>Only one primary viewer needs to be active at a time. Selecting a flow,
+structure, or source/sink changes the center view rather than adding
+another dashboard panel.</p>
+</section>
+<section id="spatial-information">
+<h3>Spatial information<a class="headerlink" href="#spatial-information" title="Link to this heading"></a></h3>
+<p>Some input collections, especially large sets of sources and sinks, have
+a useful spatial representation. The design should preserve stable
+identifiers and allow optional geometry or spatial metadata so that a
+lightweight map viewer or an external GIS can be used later. Spatial
+editing and GIS behavior do not need to be part of the scenarioflow
+core; the important architectural point is to avoid preventing such
+integration.</p>
+</section>
+<section id="plugin-metadata-for-configuration-and-display">
+<h3>Plugin metadata for configuration and display<a class="headerlink" href="#plugin-metadata-for-configuration-and-display" title="Link to this heading"></a></h3>
+<p>A contributed plugin should eventually advertise more than a callable.
+Useful registration metadata includes:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>name
+callable
+parameter schema
+description
+optional output/type metadata
+optional viewer
+</pre></div>
+</div>
+<p>The parameter schema allows YAML, command-line tools, and a GUI to
+configure the same implementation consistently. The optional type/viewer
+metadata allows the GUI to choose an appropriate display without putting
+domain-specific visualization logic into the core.</p>
+</section>
+</section>
+<section id="proposed-internal-architecture">
+<h2>Proposed internal architecture<a class="headerlink" href="#proposed-internal-architecture" title="Link to this heading"></a></h2>
+<p>A useful separation of responsibilities is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Scenario
+  |
+  +-- ConceptualInput / SeriesSpec
+  |     |
+  |     +-- Component
+  |     |     +-- Reader
+  |     |     +-- Transform(s)
+  |     |     +-- effective time / provenance
+  |     |
+  |     +-- Stitcher / transition / extrapolator
+  |     +-- Canonicalization
+  |
+  +-- Validation of model-independent invariants
+  |
+  +-- ModelPorter
+        +-- model-specific mapping
+        +-- grouping
+        +-- completeness checks
+        +-- rendering
+</pre></div>
+</div>
+<p>This preserves a useful rule:</p>
+<blockquote>
+<div><p><strong>Readers know sources. Transforms know data operations. Scenario
+assembly knows time and precedence. Porters know models.</strong></p>
+</div></blockquote>
+<p>Keeping those responsibilities separate is what makes contributions from
+other packages tractable.</p>
+</section>
+<section id="validation-and-construction-lineage">
+<h2>Validation and construction lineage<a class="headerlink" href="#validation-and-construction-lineage" title="Link to this heading"></a></h2>
+<p>Because scenarios mix observed, provisional, forecast, and assumed data,
+the construction recipe should remain inspectable and reproducible. This
+does not imply that provenance is uniquely defined pointwise in time
+after interpolation, blending, resampling, climatology, or other
+transformations.</p>
+<p>A finished conceptual input should retain enough component-level lineage
+to answer questions such as:</p>
+<ul class="simple">
+<li><p>which source components and operations were used to construct the
+input;</p></li>
+<li><p>what their nominal or effective ranges and roles were;</p></li>
+<li><p>what source and reader produced each component;</p></li>
+<li><p>which transforms were applied;</p></li>
+<li><p>where transitions or extrapolations were introduced;</p></li>
+<li><p>what the native resolution of the components was; and</p></li>
+<li><p>what resolution was delivered to the porter.</p></li>
+</ul>
+<p>The useful invariant is reproducible construction history, not a
+provenance label attached to every output value.</p>
+<p>Validation should occur at two levels:</p>
+<p><strong>Scenario-level validation</strong> checks model-independent invariants such
+as time coverage, monotonic indexes, units, target resolution, and
+missing data.</p>
+<p><strong>Porter-level validation</strong> checks model-specific completeness and
+compatibility, including required groups.</p>
+</section>
+<section id="current-prototype">
+<h2>Current prototype<a class="headerlink" href="#current-prototype" title="Link to this heading"></a></h2>
+<p>The current implementation already establishes several pieces of this
+architecture:</p>
+<ul class="simple">
+<li><p>named reader, transform, and function registries;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Component</span></code>, <code class="docutils literal notranslate"><span class="pre">SeriesSpec</span></code>, and <code class="docutils literal notranslate"><span class="pre">Scenario</span></code> objects;</p></li>
+<li><p>data components followed by function components;</p></li>
+<li><p>workspace references that allow transitions and extrapolations to
+use earlier results;</p></li>
+<li><p>configurable stitchers;</p></li>
+<li><p>scenario-wide defaults with per-series overrides; and</p></li>
+<li><p>a plotting utility for examining components and the final splice.</p></li>
+</ul>
+<p>The next architectural step is not to make the core more model-aware. It
+is to formalize the canonical conceptual-input contract and add the
+porter/plugin boundary.</p>
+</section>
+<section id="near-term-implementation-priorities">
+<h2>Near-term implementation priorities<a class="headerlink" href="#near-term-implementation-priorities" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Define the canonical output contract of a <code class="docutils literal notranslate"><span class="pre">SeriesSpec</span></code> or its
+successor: units, resolution, shape, metadata, provenance, and
+missing-data rules.</p></li>
+<li><p>Introduce a <code class="docutils literal notranslate"><span class="pre">ModelPorter</span></code> interface with explicit <code class="docutils literal notranslate"><span class="pre">validate()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">group()</span></code>, and <code class="docutils literal notranslate"><span class="pre">write()</span></code> responsibilities.</p></li>
+<li><p>Decide how conceptual inputs are mapped to porter inputs, preferably
+outside the core series definitions.</p></li>
+<li><p>Add a plugin registration/discovery mechanism for readers,
+transforms, functions/stitchers, porters, and optional viewers.</p></li>
+<li><p>Preserve component-level construction lineage through splicing and
+extrapolation.</p></li>
+<li><p>Add dry-run/inspection output so contributors can see the resolved
+component graph, effective dates, final coverage, and porter groups
+without writing model files.</p></li>
+<li><p>Add schema validation and actionable error messages before
+execution.</p></li>
+<li><p>Keep the core package deliberately small; domain knowledge belongs
+in plugins and porters.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="commands.html" class="btn btn-neutral float-left" title="Command-line tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, California Department of Water Resources.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

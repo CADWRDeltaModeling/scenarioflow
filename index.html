@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>scenarioflow &mdash; scenarioflow 0.0.post2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=039154f1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            scenarioflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scenario_yaml.html">Scenario YAML reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">scenarioflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">scenarioflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scenarioflow">
+<h1>scenarioflow<a class="headerlink" href="#scenarioflow" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">scenarioflow</span></code> assembles the time-dependent inputs to numerical models from
+sources that differ in provenance, certainty, duration and resolution:
+historical archives, real-time or provisional data, forecasts, climatology and
+planning assumptions.</p>
+<p>Each conceptual input (a river flow, a gate operation, …) is built from
+ordered <em>components</em>, each read and transformed independently, and then
+spliced together in time at explicit <em>effective</em> dates.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#conda-users">Conda (users)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenario_yaml.html">Scenario YAML reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#substitution">Substitution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#execution-order">Execution order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#scenario-keys">Scenario keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#series-keys">Series keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#component-keys">Component keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#built-in-readers">Built-in readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#built-in-transforms">Built-in transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#built-in-functions">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scenario_yaml.html#adding-readers-transforms-and-functions">Adding readers, transforms and functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Command-line tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commands.html#sflow">sflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="design.html#design-in-one-picture">Design in one picture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#conceptual-pipeline">Conceptual pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#model-independent-does-not-mean-lowest-common-denominator">Model-independent does not mean lowest common denominator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#extension-model">Extension model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#configuration-sketch">Configuration sketch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#example-use-cases">Example use cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#inspection-and-gui-design">Inspection and GUI design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#proposed-internal-architecture">Proposed internal architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#validation-and-construction-lineage">Validation and construction lineage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#current-prototype">Current prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design.html#near-term-implementation-priorities">Near-term implementation priorities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.scenario.Scenario"><code class="docutils literal notranslate"><span class="pre">Scenario</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.series.SeriesSpec"><code class="docutils literal notranslate"><span class="pre">SeriesSpec</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.component.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.config.load_yaml"><code class="docutils literal notranslate"><span class="pre">load_yaml()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.builtins.readers.read_climatology"><code class="docutils literal notranslate"><span class="pre">read_climatology()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.plot_scenario.plot_scenario"><code class="docutils literal notranslate"><span class="pre">plot_scenario()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.logging_config.LoggingConfig"><code class="docutils literal notranslate"><span class="pre">LoggingConfig</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.logging_config.configure_logging_config"><code class="docutils literal notranslate"><span class="pre">configure_logging_config()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#scenarioflow.logging_config.resolve_loglevel"><code class="docutils literal notranslate"><span class="pre">resolve_loglevel()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#unreleased">0.1.0 (unreleased)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, California Department of Water Resources.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

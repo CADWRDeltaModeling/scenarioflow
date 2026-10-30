@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scenario YAML reference &mdash; scenarioflow 0.0.post2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=039154f1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Command-line tools" href="commands.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            scenarioflow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scenario YAML reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#substitution">Substitution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-order">Execution order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scenario-keys">Scenario keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#series-keys">Series keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#component-keys">Component keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-readers">Built-in readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-transforms">Built-in transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-functions">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-readers-transforms-and-functions">Adding readers, transforms and functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Command-line tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">scenarioflow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Scenario YAML reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scenario_yaml.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scenario-yaml-reference">
+<h1>Scenario YAML reference<a class="headerlink" href="#scenario-yaml-reference" title="Link to this heading"></a></h1>
+<p>A scenario file has a <code class="docutils literal notranslate"><span class="pre">define:</span></code> block of parameters and a <code class="docutils literal notranslate"><span class="pre">scenario:</span></code>
+block of series. A complete worked example is
+<code class="docutils literal notranslate"><span class="pre">examples/sac_sjr_flux/scenario.yml</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">define</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">session_start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-04-01</span>
+<span class="w">  </span><span class="nt">session_end</span><span class="p">:</span><span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">2025-12-31</span>
+<span class="w">  </span><span class="nt">flux_dt</span><span class="p">:</span><span class="w"> </span><span class="s">"15min"</span>
+
+<span class="nt">scenario</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flux</span>
+<span class="w">  </span><span class="nt">defaults</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dt_target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${flux_dt}</span>
+<span class="w">    </span><span class="nt">stitcher</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="nv">ts_splice</span><span class="p p-Indicator">,</span><span class="nt"> args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}}</span>
+<span class="w">  </span><span class="nt">series</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sac</span>
+<span class="w">      </span><span class="nt">components</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hist</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span>
+<span class="w">          </span><span class="nt">effective</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${session_start}</span>
+<span class="w">          </span><span class="nt">load</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">read_ts_repo</span>
+<span class="w">            </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">station_id</span><span class="p">:</span><span class="w"> </span><span class="nv">fpt</span><span class="p p-Indicator">,</span><span class="nt"> variable</span><span class="p">:</span><span class="w"> </span><span class="nv">flow</span><span class="p p-Indicator">,</span><span class="nt"> start</span><span class="p">:</span><span class="w"> </span><span class="nv">2025-03-01</span><span class="p p-Indicator">}</span>
+<span class="w">          </span><span class="nt">transformations</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit_conversion</span>
+<span class="w">              </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">from_unit</span><span class="p">:</span><span class="w"> </span><span class="s">"ft^3/s"</span><span class="p p-Indicator">,</span><span class="nt"> to_unit</span><span class="p">:</span><span class="w"> </span><span class="s">"m^3/s"</span><span class="p p-Indicator">}</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">forecast_extrapolation</span>
+<span class="w">          </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">function</span>
+<span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">extrapolate_ts</span>
+<span class="w">          </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">ts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$!{hist}</span>
+<span class="w">            </span><span class="nt">start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$!{hist.last_valid_index()}</span>
+<span class="w">            </span><span class="nt">end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${session_end}</span>
+<span class="w">          </span><span class="nt">effective</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$!{hist.last_valid_index()}</span>
+</pre></div>
+</div>
+<section id="substitution">
+<h2>Substitution<a class="headerlink" href="#substitution" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">${name}</span></code></dt><dd><p>A parameter from <code class="docutils literal notranslate"><span class="pre">define:</span></code>, or else an environment variable. Unknown
+names raise <code class="docutils literal notranslate"><span class="pre">KeyError</span></code>. The result is text.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">$!{expression}</span></code></dt><dd><p>A Python expression evaluated against the <em>workspace</em>: outputs of
+components already run, available as <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&lt;series&gt;.&lt;component&gt;</span></code>. Also available: <code class="docutils literal notranslate"><span class="pre">days(n)</span></code>, <code class="docutils literal notranslate"><span class="pre">hours(n)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">minutes(n)</span></code>, <code class="docutils literal notranslate"><span class="pre">pd</span></code> and <code class="docutils literal notranslate"><span class="pre">math</span></code>. Builtins are not available. If the
+whole value is one <code class="docutils literal notranslate"><span class="pre">$!{...}</span></code> the object itself is used (e.g. a series or
+timestamp); otherwise its text is inlined.</p>
+</dd>
+</dl>
+</section>
+<section id="execution-order">
+<h2>Execution order<a class="headerlink" href="#execution-order" title="Link to this heading"></a></h2>
+<p>Within a series, all <code class="docutils literal notranslate"><span class="pre">data</span></code> components run first in listed order, then all
+<code class="docutils literal notranslate"><span class="pre">function</span></code> components in listed order. A function component may therefore
+refer to any data component of its series. The outputs are then stitched in
+listed order.</p>
+</section>
+<section id="scenario-keys">
+<h2>Scenario keys<a class="headerlink" href="#scenario-keys" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">scenario.name</span></code></dt><dd><p>Scenario name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scenario.defaults.dt_target</span></code> / <code class="docutils literal notranslate"><span class="pre">scenario.dt_target</span></code></dt><dd><p>Default target time step for series.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scenario.defaults.stitcher</span></code> / <code class="docutils literal notranslate"><span class="pre">scenario.stitcher</span></code></dt><dd><p>Default stitcher for series.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">scenario.series</span></code></dt><dd><p>List of series.</p>
+</dd>
+</dl>
+</section>
+<section id="series-keys">
+<h2>Series keys<a class="headerlink" href="#series-keys" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Series name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">dt_target</span></code></dt><dd><p>Target time step; defaults to the scenario value.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">stitcher</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">...,</span> <span class="pre">args:</span> <span class="pre">{...}}</span></code>. <code class="docutils literal notranslate"><span class="pre">ts_splice</span></code> (default) splices at the
+components’ effective times; <code class="docutils literal notranslate"><span class="pre">ts_merge</span></code> performs a prioritized merge.
+Arguments go to <a class="reference external" href="https://cadwrdeltamodeling.github.io/vtools3/html/vtools.functions.html#vtools.functions.merge.ts_splice" title="(in vtools v3.9.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">vtools.functions.merge.ts_splice()</span></code></a> or
+<a class="reference external" href="https://cadwrdeltamodeling.github.io/vtools3/html/vtools.functions.html#vtools.functions.merge.ts_merge" title="(in vtools v3.9.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">vtools.functions.merge.ts_merge()</span></code></a>. For <code class="docutils literal notranslate"><span class="pre">ts_splice</span></code>, the first
+component is clipped at its own effective time, and <code class="docutils literal notranslate"><span class="pre">transition</span></code> defaults
+to the effective times of the remaining components that have one.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">components</span></code></dt><dd><p>Ordered list of components.</p>
+</dd>
+</dl>
+</section>
+<section id="component-keys">
+<h2>Component keys<a class="headerlink" href="#component-keys" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p>Component name.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">data</span></code> or <code class="docutils literal notranslate"><span class="pre">function</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">effective</span></code></dt><dd><p>Time from which the component takes over in the splice. <code class="docutils literal notranslate"><span class="pre">start</span></code>, an
+empty value or no value means no effective time.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">load</span></code> (data; <code class="docutils literal notranslate"><span class="pre">load_method</span></code> is accepted as an alias)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">name</span></code> of a reader, optional <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">args</span></code>. <code class="docutils literal notranslate"><span class="pre">source</span></code> is
+passed as <code class="docutils literal notranslate"><span class="pre">source=</span></code> to <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> and <code class="docutils literal notranslate"><span class="pre">read_climatology</span></code> and as
+<code class="docutils literal notranslate"><span class="pre">fpath=</span></code> to other readers.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">transformations</span></code> (data)</dt><dd><p>Ordered list of <code class="docutils literal notranslate"><span class="pre">{name:</span> <span class="pre">...,</span> <span class="pre">args:</span> <span class="pre">{...}}</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">args</span></code> (function)</dt><dd><p>Function name and keyword arguments.</p>
+</dd>
+</dl>
+</section>
+<section id="built-in-readers">
+<h2>Built-in readers<a class="headerlink" href="#built-in-readers" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">read_ts</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">dms_datastore</span></code> <code class="docutils literal notranslate"><span class="pre">read_ts</span></code> on a file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">read_ts_repo</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">dms_datastore</span></code> <code class="docutils literal notranslate"><span class="pre">read_ts_repo</span></code> from the repository.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">read_csv</span></code></dt><dd><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv" title="(in pandas v3.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">read_climatology</span></code></dt><dd><p>CSV climatology indexed by period (e.g. day of year).</p>
+</dd>
+</dl>
+</section>
+<section id="built-in-transforms">
+<h2>Built-in transforms<a class="headerlink" href="#built-in-transforms" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">unit_conversion</span></code> (<code class="docutils literal notranslate"><span class="pre">from_unit</span></code>, <code class="docutils literal notranslate"><span class="pre">to_unit</span></code>)</dt><dd><p><a class="reference external" href="https://cadwrdeltamodeling.github.io/vtools3/html/vtools.functions.html#vtools.functions.unit_conversions.convert_units" title="(in vtools v3.9.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">vtools.functions.unit_conversions.convert_units()</span></code></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rhistinterp</span></code> (<code class="docutils literal notranslate"><span class="pre">dest</span></code>, <code class="docutils literal notranslate"><span class="pre">p</span></code>)</dt><dd><p>Mean-preserving interpolation of period averages to <code class="docutils literal notranslate"><span class="pre">dest</span></code> with vtools <code class="docutils literal notranslate"><span class="pre">rhistinterp</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">apply_climatology</span></code> (<code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">freq</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>)</dt><dd><p>Expand a climatology over a time range with vtools <code class="docutils literal notranslate"><span class="pre">apply_climatology</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">rename_columns</span></code> (<code class="docutils literal notranslate"><span class="pre">colnames</span></code>)</dt><dd><p>Rename columns.</p>
+</dd>
+</dl>
+</section>
+<section id="built-in-functions">
+<h2>Built-in functions<a class="headerlink" href="#built-in-functions" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">transition_ts</span></code> (<code class="docutils literal notranslate"><span class="pre">ts0</span></code>, <code class="docutils literal notranslate"><span class="pre">ts1</span></code>, <code class="docutils literal notranslate"><span class="pre">method</span></code>, <code class="docutils literal notranslate"><span class="pre">window</span></code>, <code class="docutils literal notranslate"><span class="pre">overlap</span></code>, <code class="docutils literal notranslate"><span class="pre">return_type</span></code>, …)</dt><dd><p>Transition between two series with vtools <code class="docutils literal notranslate"><span class="pre">transition_ts</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">extrapolate_ts</span></code> (<code class="docutils literal notranslate"><span class="pre">ts</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">method=&quot;ffill&quot;</span></code>)</dt><dd><p>Extend a series over <code class="docutils literal notranslate"><span class="pre">start</span></code>..``end`` by forward fill.</p>
+</dd>
+</dl>
+</section>
+<section id="adding-readers-transforms-and-functions">
+<h2>Adding readers, transforms and functions<a class="headerlink" href="#adding-readers-transforms-and-functions" title="Link to this heading"></a></h2>
+<p>Pass dictionaries in <code class="docutils literal notranslate"><span class="pre">extra_namespace</span></code> to
+<code class="docutils literal notranslate"><span class="pre">Scenario.from_config</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">Scenario</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">extra_namespace</span><span class="o">=</span><span class="p">{</span><span class="s2">"readers"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"read_mine"</span><span class="p">:</span> <span class="n">read_mine</span><span class="p">}})</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="commands.html" class="btn btn-neutral float-right" title="Command-line tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025-2026, California Department of Water Resources.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
